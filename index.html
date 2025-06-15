@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Invitación a mis XV Años</title>
+  <title>Invitación XV Años</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Playwrite+AU+QLD:wght@100..400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lobster&family=Playwrite+AU+QLD:wght@100..400&display=swap" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
 
@@ -428,7 +437,10 @@
 }
 
    #countdown {
-      font-size: 2em;
+  font-family: "Playwrite AU QLD", sans-serif; font-weight: 400; font-style: normal;
+  font-style: normal;
+
+      font-size: 1.5em;
       color: #ffffff;
     }
 
@@ -581,9 +593,58 @@
   }
 }
 
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(329deg, rgba(2, 0, 36, 0.6), rgba(198, 10, 255, 0.5));
+  background-size: 400% 400%;
+  animation: gradientMove 1.5s ease infinite, openIntro 6s ease forwards;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  backdrop-filter: blur(12px); /* 💎 desenfoque */
+  -webkit-backdrop-filter: blur(12px); /* para Safari */
+}
+
+#intro-screen h1 {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+      font-size: 1.5em;
+      
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: fadeInTitle 1.5s ease forwards 0.8s;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes openIntro {
+  0% { opacity: 1; }
+  90% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); visibility: hidden; }
+}
+
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
+    <!-- Pantalla de introducción -->
+<div id="intro-screen">
+  <h1>Bienvenidos, esperen un poco mientras carga nuestra invitación!</h1>
+</div>
+
 <div class="leaves"></div>
 
   <!-- Partículas decorativas -->
@@ -632,8 +693,7 @@
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
   ></iframe>
-   <div class="photo">   <img src="Parroquia.png">  </div>
-
+  <div class="photo"><img src="Parroquia.png"></div>
   <p>Ghana 327, Solidaridad, 89317 Tampico, Tamps.</p>
     <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230.69655251082648!2d-97.87382068700806!3d22.310361342701004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d7fbe06cffe4e1%3A0xd95e1292d00562ec!2sSal%C3%B3n%20de%20Eventos%20Mi%20M%C3%A1gico%20Sue%C3%B1o!5e0!3m2!1ses-419!2smx!4v1749752928532!5m2!1ses-419!2smx"
@@ -641,13 +701,13 @@
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
   ></iframe>
-   <div class="photo">   <img src="salon.png">  </div>
+    <div class="photo"><img src="salon.png"></div>
   <p>1a. Avenida 317, Laguna de La Puerta, 89310 Tampico, Tamps.</p>
 </div>
 
 <div class="dress-code">
   <h2>Código de Vestimenta</h2>
-  <p>Para este evento pueden asistir a como sea de su preferencia, sin embargo favor de <span class="highlight">EVITAR EL USO DE PRENDAS COLOR MORADO O SUBTONOS LILA</span> para esta ocasión tan especial.</p>
+  <p>Para este evento pueden asistir a como sea de su preferencia, sin embargo, favor de <span class="highlight">EVITAR EL USO DE PRENDAS COLOR MORADO O SUBTONOS LILA</span> para esta ocasión tan especial.</p>
 </div>
 
 
@@ -715,18 +775,18 @@
           method="POST"
           onsubmit="return prepararRSVP()">
       <h2>Rellena los Datos</h2>
-
+ <label>¿Asistirá?</label>
+      <input type="radio" id="asistira_si" name="asistira" value="Sí" required>
+      <label for="asistira_si" style="display:inline; margin-right:1rem;">Sí</label>
+      <input type="radio" id="asistira_no" name="asistira" value="No">
+      <label for="asistira_no" style="display:inline;">No</label>
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" required>
 
       <label for="cantidad">¿Cuántas personas irán? (Contandote a ti)</label>
       <input type="number" id="cantidad" name="cantidad" min="1" required>
-
-      <label>¿Asistirá?</label>
-      <input type="radio" id="asistira_si" name="asistira" value="Sí" required>
-      <label for="asistira_si" style="display:inline; margin-right:1rem;">Sí</label>
-      <input type="radio" id="asistira_no" name="asistira" value="No">
-      <label for="asistira_no" style="display:inline;">No</label>
+<label for="ninos">¿Cuántos niños asistirán?</label>
+<input type="number" id="ninos" name="ninos" min="0" required>
 
       <input type="hidden" name="message" id="mensaje">
       <input type="hidden" name="_subject" id="asunto">
@@ -734,7 +794,8 @@
       <input type="submit" value="Enviar Confirmación">
     </form>
     <br>
-    <br>
+    
+    
     <div class="dress-code"><p>Habrá un momento especial para la lluvia de sobres.</p></div>
       <p>Con cariño,<br><span class="Nombre">Jimena</span></p>
   
@@ -743,23 +804,27 @@
 
 
 
-  <script>
-    function prepararRSVP() {
-      const nombre = document.getElementById("nombre").value;
-      const cantidad = document.getElementById("cantidad").value;
-      const asistira = document.querySelector('input[name="asistira"]:checked').value;
+ <script>
+  function prepararRSVP() {
+    const nombre = document.getElementById("nombre").value;
+    const cantidad = document.getElementById("cantidad").value;
+    const ninos = document.getElementById("ninos").value;
+    const asistira = document.querySelector('input[name="asistira"]:checked').value;
 
-      document.getElementById("asunto").value = `Confirmación – ${cantidad} persona(s)`;
+    document.getElementById("asunto").value = `Confirmación – ${cantidad} persona(s), ${ninos} niño(s)`;
 
-      document.getElementById("mensaje").value =
-        `Este mensaje fue generado automáticamente. Por favor, no edites este contenido.\n\n` +
-        `Nombre: ${nombre}\n` +
-        `Número de personas: ${cantidad}\n` +
-        `¿Asiste?: ${asistira}`;
 
-      return true;
-    }
-  </script>
+    document.getElementById("mensaje").value =
+      `Este mensaje fue generado automáticamente. Por favor, no edites este contenido.\n\n` +
+      `Nombre: ${nombre}\n` +
+      `Número de personas: ${cantidad}\n` +
+      `Número de niños: ${ninos}\n` +
+      `¿Asiste?: ${asistira}`;
+
+    return true;
+  }
+</script>
+
   <br>
   <center> 
     <p id="msjFin">Nos vemos en: </p>
@@ -774,7 +839,7 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "¡Ya llegó el 18 de julio de 2025!";
+        document.getElementById("countdown").innerHTML = "¡Ya empezamos!";
         clearInterval(timer);
         return;
       }
